@@ -7,7 +7,7 @@ import java.util.Formatter;
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
  *         [Do not modify this file.]
  */
-public class IntList {
+public class  IntList {
     /**
      * First element of list.
      */
@@ -82,7 +82,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList p = A.rest;
+        while(p.rest != null){
+            p = p.rest;
+        }
+        p.rest = B;
+        return A;
     }
 
     /**
@@ -91,7 +96,18 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList toBeReturned = new IntList(0,null);
+        IntList cursor = A;
+        IntList p = toBeReturned;
+        while(cursor != null){
+            p.rest = new IntList(A.first,null);
+            cursor = cursor.rest;
+            p = p.rest;
+        }
+
+
+
+        return toBeReturned;
     }
 
 
@@ -163,7 +179,11 @@ public class IntList {
         }
         return true;
     }
-
+    public static void main(String args[]){
+        IntList A = new IntList(5,null);
+        IntList B = new IntList(15,A);
+        catenate(A,B);
+    }
     /**
      * If a cycle exists in the IntList, this method
      * returns an integer equal to the item number of the location where the
