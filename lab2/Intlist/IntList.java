@@ -96,17 +96,20 @@ public class  IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        IntList toBeReturned = new IntList(0,null);
-        IntList cursor = A;
+        IntList toBeReturned = new IntList(A.first,null);
+        IntList cursor = A.rest;
         IntList p = toBeReturned;
+        IntList otherP = B;
         while(cursor != null){
-            p.rest = new IntList(A.first,null);
+            p.rest= new IntList(cursor.first,null);
             cursor = cursor.rest;
             p = p.rest;
         }
-
-
-
+        while(otherP != null) {
+            p.rest = new IntList(otherP.first, null);
+            otherP = otherP.rest;
+            p = p.rest;
+        }
         return toBeReturned;
     }
 
